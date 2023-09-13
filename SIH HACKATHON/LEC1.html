@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDIAN RESCUE INFORMATION</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Government Rescue Agency</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to the Rescue Agency</h2>
+        <p>When disaster strikes, we are here to help you. You can report problems and request assistance below.</p>
+        <div class="slider">
+            <img src="image1.jpg" alt="Slide 1">
+            <img src="image2.jpg" alt="Slide 2">
+            <img src="image3.jpg" alt="Slide 3">
+        </div>
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+        
+    </section>
+
+    <section class="report-problem">
+        <h2>Report a Problem</h2>
+        <form action="submit_problem.php" method="POST" enctype="multipart/form-data">
+            <label for="problem-type">Problem Type:</label>
+            <select name="problem-type" id="problem-type">
+                <option value="emergency">Emergency</option>
+                <option value="request">Request for Assistance</option>
+            </select>
+
+            <label for="problem-description">Problem Description:</label>
+            <textarea name="problem-description" id="problem-description" rows="4" required></textarea>
+
+            <label for="attachment">Attach a Photo or Letter:</label>
+            <input type="file" name="attachment" id="attachment">
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Contact Us: rescueagency@example.com</p>
+    </footer>
+    <script>
+        const slider = document.querySelector('.slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+    
+        // Function to show the current slide
+        function showSlide(index) {
+            const slides = slider.querySelectorAll('img');
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.display = 'block';
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
+        }
+    
+        // Show the initial slide
+        showSlide(currentIndex);
+    
+        // Event listener for the "Next" button
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slider.childElementCount;
+            showSlide(currentIndex);
+        });
+    
+        // Event listener for the "Previous" button
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slider.childElementCount) % slider.childElementCount;
+            showSlide(currentIndex);
+        });
+    </script>
+    
+</body>
+</html>
